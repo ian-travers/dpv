@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
   <div class="card border-primary">
     <div class="card-header">
-      <h4>Новый пользователь</h4>
+      <h3>Новый пользователь</h3>
     </div>
     <div class="card-body">
       <form id="user-form" action="{{ route('admin.users.store') }}" method="post">
@@ -21,7 +21,6 @@
             <em>Отмечены обязательные поля</em>
           </p>
         </div>
-
       </form>
     </div>
   </div>

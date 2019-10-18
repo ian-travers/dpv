@@ -1,22 +1,18 @@
 @php /* @var App\Wagon $wagon */ @endphp
 
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-2">
+  <div class="card border-primary">
+    <div class="card-header">
+      <h3>Редактирование вагона</h3>
+    </div>
+    <div class="card-body">
+      <form action="{{ route('admin.wagons.update', $wagon->id) }}" method="post">
 
-        @include('backend.left-sidebar')
-      </div>
-      <div class="col-10">
-        <h2>Редактирование вагона</h2>
-        <form action="{{ route('admin.wagons.update', $wagon->id) }}" method="post">
-
-          @method('patch')
-          @include('backend.wagons._form')
-        </form>
-      </div>
+        @method('patch')
+        @include('backend.wagons._form')
+      </form>
     </div>
   </div>
 @endsection
