@@ -233,7 +233,7 @@ class Wagon extends Model
         if ($this->isDeparted()) return 'text-success';
         if ($this->isLongIdle()) return 'text-danger';
         if ($this->isReadyToDepart()) return 'text-secondary';
-        if ($this->isJustLocal()) return 'text-info italic';
+        if ($this->isJustLocal()) return 'text-purple';
         return null;
     }
 
