@@ -21,10 +21,10 @@
         <a href="{{ $wagon->viewPath() }}" class="{{ $wagon->linkCssClass() }}">
           {{ $wagon->inw }}
 
-          @if($wagon->isHasAnotherDetaining())
-            <span class="badge badge-warning border align-top float-right" title="Есть дополнительная информация">!</span>
-
-          @endif
+          {{--@if($wagon->isHasAnotherDetaining())--}}
+            {{--<span class="badge badge-warning border align-top float-right" title="Есть дополнительная информация">!</span>--}}
+{{----}}
+          {{--@endif--}}
         </a>
 
 
