@@ -92,17 +92,12 @@ class InfoController extends Controller
 
     public function recent($day, $type)
     {
-        $beforeYesterday = Carbon::parse('-2 day')->hour(0)->minute(0)->second(0);
-
         if ($day == 'today') {
             $wagons = Wagon::where($type . '_at', '>', Carbon::today())->paginate($this->wagonsPerPage);
             $day = 'Сегодня';
-        } elseif ($day == 'yesterday') {
+        } else {
             $wagons = Wagon::whereBetween($type . '_at', [Carbon::yesterday(), Carbon::today()])->paginate($this->wagonsPerPage);
             $day = 'Вчера';
-        } else {
-            $wagons = Wagon::whereBetween($type . '_at', [$beforeYesterday, Carbon::yesterday()])->paginate($this->wagonsPerPage);
-            $day = 'Позавчера';
         }
 
         if ($type == 'detained') {
@@ -112,8 +107,6 @@ class InfoController extends Controller
         } elseif ($type == 'departed') {
             $type = 'отправлено';
         }
-
-        $arr = $wagons->total();
 
         return view('info.recent', compact('day', 'type', 'wagons'));
     }
