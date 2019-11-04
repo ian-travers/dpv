@@ -18,6 +18,7 @@ function controlledAtQuery(Detainer $detainer = null, Carbon $datetime = null)
 
 
             : Wagon::where('detained_at', '<', $datetime)
+                ->where('detainer_id', '<>', config('app.local_wagon_category_id'))
                 ->where(function ($query) use ($datetime) {
                     $query
                         ->whereNull('departed_at')
@@ -27,7 +28,8 @@ function controlledAtQuery(Detainer $detainer = null, Carbon $datetime = null)
         $query = $detainer
             ? $detainer->wagons()
                 ->whereNull('departed_at')
-            : Wagon::whereNull('departed_at');
+            : Wagon::whereNull('departed_at')
+                ->where('detainer_id', '<>', config('app.local_wagon_category_id'));
     }
 
     return $query;
@@ -90,6 +92,7 @@ function detainedAtQuery(Detainer $detainer = null, Carbon $datetime = null)
                 ->whereNotIn('id', $releasedIds)
 
             : Wagon::whereNotNull('detained_at')
+                ->where('detainer_id', '<>', config('app.local_wagon_category_id'))
                 ->where('detained_at', '<', $datetime)
                 ->where(function ($query) use ($datetime) {
                     $query
@@ -104,6 +107,7 @@ function detainedAtQuery(Detainer $detainer = null, Carbon $datetime = null)
                 ->whereNull('departed_at')
                 ->whereNotIn('id', $releasedIds)
             : Wagon::whereNotNull('detained_at')
+                ->where('detainer_id', '<>', config('app.local_wagon_category_id'))
                 ->whereNull('departed_at')
                 ->whereNotIn('id', $releasedIds);
     }
@@ -177,8 +181,11 @@ function detainedLongPeriodCount(Detainer $detainer = null, Carbon $startAt, Car
 function detainedPeriodQuery(Detainer $detainer = null, Carbon $startAt, Carbon $endAt)
 {
     return $detainer
-        ? $detainer->wagons()->where('detained_at', '>=', $startAt)->where('detained_at', '<', $endAt)
-        : Wagon::where('detained_at', '>=', $startAt)->where('detained_at', '<', $endAt);
+        ? $detainer->wagons()->where('detained_at', '>=', $startAt)
+            ->where('detained_at', '<', $endAt)
+        : Wagon::where('detained_at', '>=', $startAt)
+            ->where('detainer_id', '<>', config('app.local_wagon_category_id'))
+            ->where('detained_at', '<', $endAt);
 }
 
 /**

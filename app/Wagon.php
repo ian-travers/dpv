@@ -281,7 +281,7 @@ class Wagon extends Model
     {
         $wagons = $detainer
             ? Wagon::whereNull('departed_at')->where('detainer_id', $detainer->id)->get()
-            : Wagon::whereNull('departed_at')->get();
+            : Wagon::whereNull('departed_at')->where('detainer_id', '<>', config('app.local_wagon_category_id'))->get();
 
         $ids = [];
 

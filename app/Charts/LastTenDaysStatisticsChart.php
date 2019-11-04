@@ -38,7 +38,7 @@ class LastTenDaysStatisticsChart extends Chart
                 'pointRadius' => 12,
                 'pointHoverRadius' => 12
             ]);
-        $this->dataset('Отправлено', 'line', array_values($departedByDay))
+        $this->dataset('Отправлено (включяя местные вагоны)', 'line', array_values($departedByDay))
             ->color('green')
             ->backgroundcolor('green')
             ->options([

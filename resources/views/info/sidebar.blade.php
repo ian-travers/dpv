@@ -104,7 +104,7 @@
 
   <div class="widget">
     <div class="widget-heading">
-      <h4>Местные выгоны</h4>
+      <h4><span class="text-purple">Местные вагоны</span></h4>
     </div>
     <div class="widget-body mb-3">
       <div class="d-flex justify-content-between align-self-center px-3">
