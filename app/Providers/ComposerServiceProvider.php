@@ -25,15 +25,8 @@ class ComposerServiceProvider extends ServiceProvider
             $yesterdayReleasedCount = Wagon::whereBetween('released_at', [Carbon::yesterday(), Carbon::today()])->count();
             $yesterdayDepartedCount = Wagon::whereBetween('departed_at', [Carbon::yesterday(), Carbon::today()])->count();
 
-            $beforeYesterday = Carbon::parse('-2 day')->hour(0)->minute(0)->second(0);
-
-            $beforeYesterdayDetainedCount = Wagon::whereBetween('detained_at', [$beforeYesterday, Carbon::yesterday()])->count();
-            $beforeYesterdayReleasedCount = Wagon::whereBetween('released_at', [$beforeYesterday, Carbon::yesterday()])->count();
-            $beforeYesterdayDepartedCount = Wagon::whereBetween('departed_at', [$beforeYesterday, Carbon::yesterday()])->count();
-
             return $view->with(compact('todayDetainedCount' , 'todayReleasedCount', 'todayDepartedCount',
-                'yesterdayDetainedCount', 'yesterdayReleasedCount', 'yesterdayDepartedCount',
-                'beforeYesterdayDetainedCount', 'beforeYesterdayReleasedCount', 'beforeYesterdayDepartedCount'));
+                'yesterdayDetainedCount', 'yesterdayReleasedCount', 'yesterdayDepartedCount'));
         });
 
         view()->composer('backend.left-sidebar', function (View $view) {
