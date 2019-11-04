@@ -289,7 +289,7 @@
       $('#removed_at').datetimepicker({date: removed_at});
   </script>
   <script type="text/javascript">
-      if (String($('#detainer_id').val()) === String(7)) {
+      if (String($('#detainer_id').val()) === String({{ config('app.local_wagon_category_id') }})) {
           $('#not-local-block').hide();
       } else {
           $('#local-block').hide();
@@ -297,7 +297,7 @@
 
       $(document).ready(function () {
           $('#detainer_id').change(function () {
-              if (String(this.value) === String(7)) {
+              if (String(this.value) === String({{ config('app.local_wagon_category_id') }})) {
                   $('#local-block').show(300);
                   $('#not-local-block').hide(300);
               } else {

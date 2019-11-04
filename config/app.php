@@ -18,6 +18,9 @@ return [
     // Administrator the whole app. Protected to deleting.
     'protected_user_id' => 3,
 
+    // local wagon category (detainer) id
+    'local_wagon_category_id' => 8,
+
     'providers' => [
         /*
          * Laravel Framework Service Providers...

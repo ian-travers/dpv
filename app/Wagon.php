@@ -102,7 +102,7 @@ class Wagon extends Model
 
     public function isLocal(): bool
     {
-        return $this->detainer_id == 7;
+        return $this->detainer_id == config('app.local_wagon_category_id');
     }
 
     public function isReadyToDepart(Carbon $at = null): bool
@@ -160,7 +160,7 @@ class Wagon extends Model
      */
     public function isJustLocal(Carbon $at = null)
     {
-        if ($this->detainer_id != 7) return false;
+        if ($this->detainer_id != config('app.local_wagon_category_id')) return false;
 
         if ($this->isDetained()) return false;
 

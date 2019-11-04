@@ -264,12 +264,12 @@
       $('#removed_at').datetimepicker({date: removed_at});
   </script>
   <script>
-      if (String($('#detainer_id').val()) !== String(7)) {
+      if (String($('#detainer_id').val()) !== String({{ config('app.local_wagon_category_id') }})) {
           $('#local-block').hide();
       }
       $(document).ready(function () {
           $('#detainer_id').change(function () {
-              if (String(this.value) === String(7)) {
+              if (String(this.value) === String({{ config('app.local_wagon_category_id') }})) {
                   $('#local-block').show(300);
               } else {
                   $('#local-block').hide(300);

@@ -16,7 +16,7 @@ class WagonsController extends Controller
         $term = request()->only('term');
 
         $wagons = auth()->user()->isLocalWagonsManager()
-            ? Wagon::where('detainer_id', 7)
+            ? Wagon::where('detainer_id', config('app.local_wagon_category_id'))
                 ->sortable()
                 ->filter($term)
                 ->orderBy('detained_at')
@@ -50,7 +50,7 @@ class WagonsController extends Controller
     {
         $request['returning'] = $request->has('returning') ? "1" : "0";
 
-        if ($request['detainer_id'] == 7) {
+        if ($request['detainer_id'] == config('app.local_wagon_category_id')) {
             $request['taken_measure'] = null;
         } elseif (!$request['detained_at']) {
             return redirect()->back()->with([
@@ -100,7 +100,7 @@ class WagonsController extends Controller
 
         $request['returning'] = $request->has('returning') ? "1" : "0";
 
-        if ($request['detainer_id'] == 7) {
+        if ($request['detainer_id'] == config('app.local_wagon_category_id')) {
             $request['taken_measure'] = null;
         }
 
@@ -136,7 +136,7 @@ class WagonsController extends Controller
     private function prepareDetainers()
     {
         return auth()->user()->isLocalWagonsManager()
-            ? Detainer::where('id', 7)->get()
+            ? Detainer::where('id', config('app.local_wagon_category_id'))->get()
             : Detainer::all();
     }
 }

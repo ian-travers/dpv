@@ -35,12 +35,12 @@ class DetainersTableSeeder extends Seeder
                 'idle_start_event' => 'released_at'
             ],
             [
-                'name' => 'Местные вагоны',
-                'idle_start_event' => 'cargo_operation_finished_at'
-            ],
-            [
                 'name' => 'Прочие',
                 'idle_start_event' => 'released_at'
+            ],
+            [
+                'name' => 'Местные вагоны',
+                'idle_start_event' => 'cargo_operation_finished_at'
             ]
         ]);
     }
