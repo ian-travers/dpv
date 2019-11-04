@@ -6,7 +6,7 @@
     <form action="{{ route('root') }}">
       <div class="input-group input-group-lg">
         <input type="text" class="form-control" value="{{ request('term') }}" name="term"
-               placeholder="Поиск..." autofocus>
+               placeholder="Поиск вагона..." title="Введите номер или собственника" autofocus>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="submit">
             <i class="fas fa-search"></i>
