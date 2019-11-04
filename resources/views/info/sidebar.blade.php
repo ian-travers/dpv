@@ -100,7 +100,38 @@
         @endif
       </div>
     </div>
+  </div>
 
+  <div class="widget">
+    <div class="widget-heading">
+      <h4>Местные выгоны</h4>
+    </div>
+    <div class="widget-body mb-3">
+      <div class="d-flex justify-content-between align-self-center px-3">
+        <div>Задержано</div>
+        <div>
+          <a href="{{ route('detained-by', $localWagonDetainer) }}">
+            <span class="badge badge-primary">{{ detainedAtCount($localWagonDetainer) }}</span>
+          </a>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-self-center px-3">
+        <div>Длительно простаивающие</div>
+        <div>
+          <a href="{{ route('detained-by-long', $localWagonDetainer) }}">
+            <span class="badge badge-danger">{{ detainedLongAtCount($localWagonDetainer) }}</span>
+          </a>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between align-self-center px-3">
+        <div>На контроле</div>
+        <div>
+          <a href="{{ route('controlled-by', $localWagonDetainer) }}">
+            <span class="badge badge-secondary">{{ controlledAtCount($localWagonDetainer) }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </aside>
 

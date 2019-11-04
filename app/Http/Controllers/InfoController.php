@@ -14,6 +14,7 @@ class InfoController extends Controller
     public function index()
     {
         $detainers = Detainer::all();
+        $localWagonDetainer = Detainer::find(config('app.local_wagon_category_id'));
 
         $wagons = request('term')
             ? Wagon::with('detainer')
@@ -23,7 +24,7 @@ class InfoController extends Controller
 
         $lastTenDaysChart = new LastTenDaysStatisticsChart();
 
-        return view('info.index', compact('detainers', 'wagons', 'lastTenDaysChart'));
+        return view('info.index', compact('detainers', 'localWagonDetainer', 'wagons', 'lastTenDaysChart'));
     }
 
     public function showWagon(Wagon $wagon)

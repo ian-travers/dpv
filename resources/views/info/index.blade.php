@@ -1,3 +1,5 @@
+@php /** @var $detainer App\Detainer */ @endphp
+
 @extends('layouts.app')
 
 @section('breadcrumbs', '')
@@ -38,6 +40,7 @@
                 <ul class="categories">
 
                   @foreach($detainers as $detainer)
+                    @if($detainer->id !== config('app.local_wagon_category_id'))
                     <li>
                       <div>
                         <a href="{{ route('detained-by', $detainer) }}">
@@ -60,6 +63,7 @@
                       </div>
                     </li>
 
+                    @endif
                   @endforeach
                 </ul>
               </div>
