@@ -17,14 +17,14 @@
   @foreach($wagons as $wagon)
     <tr>
       <td class="text-center">{{ (request('page')) ? (request('page') - 1) * $wagons->perPage() + $loop->index + 1 : $loop->index + 1 }}</td>
-      <td class="text-center">
+      <td class="text-center position-relative">
         <a href="{{ $wagon->viewPath() }}" class="{{ $wagon->linkCssClass() }}">
           {{ $wagon->inw }}
 
-          {{--@if($wagon->isHasAnotherDetaining())--}}
-            {{--<span class="badge badge-warning border align-top float-right" title="Есть дополнительная информация">!</span>--}}
-{{----}}
-          {{--@endif--}}
+          @if($wagon->isHasAnotherDetaining())
+            <span class="badge badge-warning border position-absolute" style="top: 2px; right: 2px;">!</span>
+
+          @endif
         </a>
 
 

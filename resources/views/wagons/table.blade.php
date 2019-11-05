@@ -35,7 +35,14 @@
   @foreach($wagons as $wagon)
     <tr>
       <td class="text-center">{{ (request('page')) ? (request('page') - 1) * $wagons->perPage() + $loop->index + 1 : $loop->index + 1 }}</td>
-      <td><a href="{{ $wagon->path() }}">{{ $wagon->inw }}</a></td>
+      <td class="text-center position-relative">
+        <a href="{{ $wagon->path() }}">{{ $wagon->inw }}</a>
+
+        @if($wagon->isHasAnotherDetaining())
+          <span class="badge badge-warning border position-absolute" style="top: 2px; right: 2px;">!</span>
+
+        @endif
+      </td>
 
       @if(!auth()->user()->isLocalWagonsManager())
         <td>{{ $wagon->detainer->name }}</td>

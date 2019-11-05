@@ -19,7 +19,14 @@
   @foreach($wagons as $wagon)
     <tr>
       <td class="text-center">{{ (request('page')) ? (request('page') - 1) * $wagons->perPage() + $loop->index + 1 : $loop->index + 1 }}</td>
-      <td><a href="{{ route('admin.wagons.show', $wagon) }}">{{ $wagon->inw }}</a></td>
+      <td class="position-relative">
+        <a href="{{ route('admin.wagons.show', $wagon) }}">{{ $wagon->inw }}</a>
+
+        @if($wagon->isHasAnotherDetaining())
+          <span class="badge badge-warning border position-absolute" style="top: 2px; right: 2px;">!</span>
+
+        @endif
+      </td>
       <td>{{ $wagon->detainer->name }}</td>
       <td class="text-center">{{ $wagon->arrived_at ? $wagon->arrived_at->format('d.m.Y H:i') : '' }}</td>
       <td class="text-center">{{ $wagon->detained_at ? $wagon->detained_at->format('d.m.Y H:i') : '' }}</td>

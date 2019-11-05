@@ -18,8 +18,17 @@
         </div>
         <a class="btn btn-outline-primary" href="{{ route('admin.wagons.index') }}">Вагоны</a>
       </div>
+
+      @if($wagon->isHasAnotherDetaining())
+        <div>
+      <span
+          class="btn btn-warning btn-sm border border-dark">Внимание! По этому вагону есть другая запись</span>
+        </div>
+
+      @endif
     </div>
   </div>
+
   <table class="table table-sm border border-bottom">
     <tbody>
     <tr>

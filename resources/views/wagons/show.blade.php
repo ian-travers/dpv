@@ -7,6 +7,13 @@
     <div class="d-flex mb-4 justify-content-between">
       <div>
         <h2>Информация по вагону {{ $wagon->inw }}</h2>
+
+        @if($wagon->isHasAnotherDetaining())
+          <div>
+            <span class="btn btn-warning btn-sm border border-dark">Внимание! По этому вагону есть другая запись</span>
+          </div>
+
+        @endif
       </div>
       <div>
         <a class="btn btn-outline-primary" href="{{ route('wagons.index') }}">Список вагонов</a>
@@ -30,7 +37,9 @@
           </tr>
           <tr>
             <td width="15%" class="text-right text-muted">{{ $wagon->detained_at ? 'Задержан' : 'Категория' }}</td>
-            <td><strong>{{ $wagon->detainer->name }}</strong> {{ $wagon->detained_at ? $wagon->detained_at->format('d.m.Y в H:i') : '' }}</td>
+            <td>
+              <strong>{{ $wagon->detainer->name }}</strong> {{ $wagon->detained_at ? $wagon->detained_at->format('d.m.Y в H:i') : '' }}
+            </td>
           </tr>
 
           @if(!$wagon->isLocal())
@@ -106,7 +115,9 @@
 
             @csrf
             @method('delete')
-            <button type="submit" onclick="return confirm('Подтверждаете удаление?')" class="btn btn-outline-danger">Удалить</button>
+            <button type="submit" onclick="return confirm('Подтверждаете удаление?')" class="btn btn-outline-danger">
+              Удалить
+            </button>
           </form>
         </div>
       </div>

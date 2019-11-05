@@ -208,12 +208,6 @@ class Wagon extends Model
 
     public function detainedAfterReleaseInHours()
     {
-//        return isset($this->released_at)
-//            ? isset($this->departed_at)
-//                ? $this->departed_at->diffInHours($this->released_at)
-//                : now()->diffInHours($this->released_at)
-//            : null;
-
         $event = $this->getLongIdleFieldName();
 
         return isset($this->$event)
@@ -252,20 +246,18 @@ class Wagon extends Model
         return null;
     }
 
-    function isHasAnotherDetaining(): bool
+    public function isHasAnotherDetaining(): bool
     {
-        $records = Wagon::where('inw', $this->inw)->get();
-
-        return count($records) > 1;
+        return Wagon::where('inw', $this->inw)
+            ->whereNull('departed_at')
+            ->count() > 1;
     }
 
-    function getAnotherDetaining()
+    public function getAnotherDetaining()
     {
-        if ($this->isHasAnotherDetaining()) {
-            return $wagons = Wagon::where('inw', $this->inw)->whereKeyNot($this->id)->get();
-        }
-
-        return null;
+        return $this->isHasAnotherDetaining()
+            ? $wagons = Wagon::where('inw', $this->inw)->whereKeyNot($this->id)->get()
+            : null;
     }
 
 //    scopes

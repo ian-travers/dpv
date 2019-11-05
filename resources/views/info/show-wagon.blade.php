@@ -15,31 +15,11 @@
             <div>
               <h3>Информация о вагоне {{ $wagon->inw }}</h3>
 
-              {{--@if($wagon->isHasAnotherDetaining())--}}
-                {{--<span--}}
-                    {{--class="btn btn-warning btn-sm border border-dark">Внимание! По этому вагону есть еще информация</span>--}}
+              @if($wagon->isHasAnotherDetaining())
+                <span
+                    class="btn btn-warning btn-sm border border-dark">Внимание! По этому вагону есть другая запись</span>
 
-                {{--@foreach($wagon->getAnotherDetaining() as $another)--}}
-                  {{--@if($another->isDetained())--}}
-                    {{--<a href="{{ $another->viewPath() }}" class="btn btn-sm btn-primary">--}}
-                      {{--Задержан {{ $another->detained_at ? $another->detained_at->format('d.m.Y') : '' }}--}}
-                    {{--</a>--}}
-
-                  {{--@endif--}}
-                  {{--@if($another->isReleased())--}}
-                    {{--<a href="{{ $another->viewPath() }}" class="btn btn-sm btn-secondary">--}}
-                      {{--Выпущен {{ $another->released_at ? $another->released_at->format('d.m.Y') : '' }}--}}
-                    {{--</a>--}}
-
-                  {{--@endif--}}
-                  {{--@if($another->isDeparted())--}}
-                    {{--<a href="{{ $another->viewPath() }}" class="btn btn-sm btn-success">--}}
-                      {{--Отправлен {{ $another->departed_at ? $another->departed_at->format('d.m.Y') : '' }}--}}
-                    {{--</a>--}}
-
-                  {{--@endif--}}
-                {{--@endforeach--}}
-              {{--@endif--}}
+              @endif
             </div>
 
             @can('manage', $wagon)
