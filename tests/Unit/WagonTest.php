@@ -85,7 +85,7 @@ class WagonTest extends TestCase
         $this->assertFalse($wagon->isLongIdle());
 
         $wagon->update([
-            'detainer_id' => 7,
+            'detainer_id' => config('app.local_wagon_category_id'),
             'detained_at' => Carbon::parse('-45 hours'),
             'cargo_operation_finished_at' => Carbon::parse('-45 hours')
         ]);
@@ -169,7 +169,7 @@ class WagonTest extends TestCase
     function check_is_local()
     {
         $wagon = app(WagonFactory::class)->create();
-        $wagon->update(['detainer_id' => 7]);
+        $wagon->update(['detainer_id' => config('app.local_wagon_category_id')]);
 
         $this->assertTrue($wagon->isLocal());
     }
