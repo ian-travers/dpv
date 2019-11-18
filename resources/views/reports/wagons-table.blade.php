@@ -4,7 +4,8 @@
   <thead>
   <tr class="text-center">
     <th>#</th>
-    <th>Номер вагона</th>
+    <th>@sortablelink('inw', 'Номер вагона')</th>
+    <th>@sortablelink(('detainer_id', 'Категория'))</th>
     <th>Прибыл</th>
     <th>Задержан</th>
     <th>Причина</th>
@@ -20,6 +21,7 @@
       <td class="text-center">
         <a href="{{ route('show-wagon', $wagon) }}">{{ $wagon->inw }}</a>
       </td>
+      <td>{{ $wagon->detainer->name }}</td>
       <td class="text-center">{{ $wagon->arrived_at ? $wagon->arrived_at->format('d.m.Y H:i') : '' }}</td>
       <td class="text-center">{{ !$wagon->isLocal() ? $wagon->detained_at->format('d.m.Y H:i') : '' }}</td>
       <td>{{ $wagon->reason }}</td>

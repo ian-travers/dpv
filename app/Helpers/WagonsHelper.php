@@ -124,7 +124,9 @@ function detainedAtQuery(Detainer $detainer = null, Carbon $datetime = null)
  */
 function detainedAtAll(Detainer $detainer = null, Carbon $datetime = null)
 {
-    return detainedAtQuery($detainer, $datetime)->get();
+    return detainedAtQuery($detainer, $datetime)
+        ->sortable()
+        ->get();
 }
 
 /**
@@ -223,8 +225,10 @@ function detainedLongAtCount(Detainer $detainer = null, Carbon $datetime = null)
  */
 function wagonsDetainedForPeriod(Carbon $startsAt, Carbon $endsAt)
 {
-    return Wagon::where('detained_at', '>=', $startsAt)
+    return Wagon::with('detainer')
+        ->where('detained_at', '>=', $startsAt)
         ->where('detained_at', '<', $endsAt)
+        ->sortable()
         ->orderBy('detained_at')
         ->get();
 }
