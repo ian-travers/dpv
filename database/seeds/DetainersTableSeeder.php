@@ -27,8 +27,7 @@ class DetainersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Фитосанитарный контроль',
-                'idle_start_event' => 'released_at
-                '
+                'idle_start_event' => 'released_at'
             ],
             [
                 'name' => 'Пункт передачи вагонов',
